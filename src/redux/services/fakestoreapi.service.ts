@@ -12,21 +12,10 @@ export const fakeStoreApi = createApi({
       query: () => ({ url: "/products/categories", timeout: 5000 }),
       providesTags: ["Categories"],
     }),
-    // Get all products
-    getAllProducts: builder.query<ProductDto[], void>({
-      query: () => ({ url: "/products", timeout: 5000 }),
-      providesTags: (result) =>
-        result
-          ? [
-              ...result.map(({ id }) => ({ type: "Products", id } as const)),
-              { type: "Products", id: "LIST" },
-            ]
-          : [{ type: "Products", id: "LIST" }],
-    }),
-    // Get products by category
-    getProductsByCategory: builder.query<ProductDto[], string>({
+    // Get products (optional by category)
+    getProductsByCategory: builder.query<ProductDto[], string | undefined>({
       query: (category) => ({
-        url: `/products/category/${category}`,
+        url: category ? `/products/category/${category}` : '/products',
         timeout: 5000,
       }),
       providesTags: (result) =>
@@ -42,6 +31,5 @@ export const fakeStoreApi = createApi({
 
 export const {
   useGetAllCategoriesQuery,
-  useGetAllProductsQuery,
   useGetProductsByCategoryQuery,
 } = fakeStoreApi;

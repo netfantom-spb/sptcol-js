@@ -1,26 +1,21 @@
 import React, { useState } from "react";
 import {
   useGetAllCategoriesQuery,
-  useGetAllProductsQuery,
   useGetProductsByCategoryQuery,
 } from "@/redux/services/fakestoreapi.service";
-import { skipToken } from "@reduxjs/toolkit/query";
 import { ProductsTable } from "./features/products-table/ProductsTable";
 import { Form, Spinner } from "react-bootstrap";
 import { SelectCategory } from "./select-category/SelectCategory";
 
 export const ProductsPage: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null),
-    [filterText, setFilterText] = useState('');
+    [filterText, setFilterText] = useState("");
 
   const { data: categories, isLoading: isLoadingCategories } =
       useGetAllCategoriesQuery(),
-    { data: allProducts, isLoading: isLoadingProducts } =
-      useGetAllProductsQuery(),
-    { data: productsInCategory, isFetching: productsInCategoryFetching } =
-      useGetProductsByCategoryQuery(selectedCategory || skipToken);
+    { data: products, isFetching: productsFetching } =
+      useGetProductsByCategoryQuery(selectedCategory || undefined);
 
-    //   console.log((selectedCategory ? productsInCategory : allProducts));
   return (
     <>
       <h1>Products list</h1>
@@ -39,17 +34,17 @@ export const ProductsPage: React.FC = () => {
           />
         </div>
       </div>
-      {allProducts && (
+      {products && (
         <ProductsTable
-          items={(selectedCategory ? productsInCategory : allProducts) || []}
+          items={products}
           filterText={filterText || null}
           itemsPerPage={5}
         />
       )}
-      {(allProducts && (allProducts).length == 0) && <div>No products available</div>}
-      {(isLoadingCategories ||
-        isLoadingProducts ||
-        productsInCategoryFetching) && (
+      {products && products.length == 0 && (
+        <div>No products available</div>
+      )}
+      {(isLoadingCategories || productsFetching) && (
         <div className="m-5">
           <Spinner animation="border" />
         </div>
