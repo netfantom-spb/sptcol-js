@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { ProductDto } from "@/redux/dto/product.dto";
-import { Price } from "@/components/Price/Price";
+import { Price } from "@/components/price/Price";
 import { Paginator } from "@/components/paginator/Paginator";
 
 interface ProductsTableProps {
@@ -15,7 +15,6 @@ export const ProductsTable: React.FC<ProductsTableProps> = ({
   filterText,
 }) => {
   const [activePage, setActivePage] = useState(1);
-    console.log('render ProductsTable')
   const filteredItems = filterText
     ? items.filter((item) => {
         const re = new RegExp(filterText, "i");

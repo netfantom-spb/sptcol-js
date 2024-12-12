@@ -1,6 +1,6 @@
 import "./App.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { ProductsPage } from "./pages/products/Products";
+import { ProductsPage } from "./pages/products/Products.page";
 import { store } from "./redux/store";
 import { Provider } from "react-redux";
 

@@ -23,7 +23,7 @@ export const ProductsPage: React.FC = () => {
     //   console.log((selectedCategory ? productsInCategory : allProducts));
   return (
     <>
-      <h1>Test store</h1>
+      <h1>Products list</h1>
       <div className="d-flex my-3 gap-3">
         <div>
           <SelectCategory
@@ -46,6 +46,7 @@ export const ProductsPage: React.FC = () => {
           itemsPerPage={5}
         />
       )}
+      {(allProducts && (allProducts).length == 0) && <div>No products available</div>}
       {(isLoadingCategories ||
         isLoadingProducts ||
         productsInCategoryFetching) && (
