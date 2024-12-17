@@ -1,4 +1,4 @@
-# React + TypeScript + Vite
+# Home work
 
 ## Dependencies
 * vite
@@ -6,6 +6,9 @@
 * react-bootstrap
 * redux-toolkit
 * rtk query
+
+## Using API
+* https://fakestoreapi.com/docs
 
 ## How to run
 ```bash

@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { describe, it, expect } from "vitest";
-import { Price } from "./Price"; // Предполагается, что компонент находится в этом же каталоге
+import { Price } from "./Price"; 
 
 describe("Price component", () => {
   it("renders formatted value when 'value' prop is provided", () => {
