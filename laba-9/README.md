@@ -6,6 +6,8 @@
 * react-bootstrap
 * redux-toolkit
 * rtk query
+* vitest
+* react testing library
 
 ## Using API
 * https://fakestoreapi.com/docs
